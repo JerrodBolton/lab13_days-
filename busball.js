@@ -1,5 +1,7 @@
 // alert("Hey I don't feel so good today?")
-
+const randomize = function (array) {
+  return Math.floor(Math.random() * array.length);
+};
 // I made a class so that I can the list that put everything in this class.
 class randomNumber {
   numberShown = 0;
@@ -21,21 +23,22 @@ MAX_CLICKS_NEED = 25;
 
 let imgInfo = [
   // I'm add a new image into the random image shower
-  new randomNumber("bag", "bag.jpg"),
-  new randomNumber("banana", "banana.jpg"),
-  new randomNumber("bathroom", "bathroom.jpg"),
-  new randomNumber("boots", "boots.jpg"),
-  new randomNumber("breakfast", "breakfast.jpg"),
-  new randomNumber("bubblegum", "bubblegum.jpg"),
-  new randomNumber("chair", "chair.jpg"),
-  new randomNumber("cthulhu", "cthulhu.jpg"),
-  new randomNumber("dog-duck", "dog-duck.jpg"),
-  new randomNumber("dragon", "dragon.jpg"),
-  new randomNumber("pen", "pen.jpg"),
-  new randomNumber("pet-sweep", "pet-sweep.jpg"),
-  new randomNumber("scissors", "scissors.jpg"),
+  new randomNumber("bag", "img/bag.jpg"),
+  new randomNumber("banana", "img/banana.jpg"),
+  new randomNumber("bathroom", "img/bathroom.jpg"),
+  new randomNumber("boots", "img/boots.jpg"),
+  new randomNumber("breakfast", "img/breakfast.jpg"),
+  new randomNumber("bubblegum", "img/bubblegum.jpg"),
+  new randomNumber("chair", "img/chair.jpg"),
+  new randomNumber("cthulhu", "img/cthulhu.jpg"),
+  new randomNumber("dog-duck", "img/dog-duck.jpg"),
+  new randomNumber("dragon", "img/dragon.jpg"),
+  new randomNumber("pen", "img/pen.jpg"),
+  new randomNumber("pet-sweep", "img/pet-sweep.jpg"),
+  new randomNumber("scissors", "img/scissors.jpg"),
   // I put this array here as I can get my night object a name and pictures
-];
+];  //? 
+
 // // this is nothing but a check in order to see if it pull the image??
 // for (let j = 0; j < imgInfo.length; j++) {
 //     console.log(imgInfo[6].srcImg);
@@ -57,9 +60,32 @@ const imgChart = document.getElementById("imgChart");
 
 function getRandom() {
   // I'm making a function so that is can get a random number image in my array.
-  rightSideImageJ = Math.floor(Math.random() * imgInfo.length);
-  middleSideImageJ = Math.floor(Math.random() * imgInfo.length);
-  leftSideImageJ = Math.floor(Math.random() * imgInfo.length);
+  let rightSideImageJ = Math.floor(Math.random() * imgInfo.length);
+  let middleSideImageJ = Math.floor(Math.random() * imgInfo.length);
+  let leftSideImageJ = Math.floor(Math.random() * imgInfo.length);
+  // I don't have to do it like this I can do a get "randomize(imgInfo)"
+
+  let leftVsMiddle = leftSideImageJ === middleSideImageJ;
+  let rightVsMiddle = rightSideImageJ === middleSideImageJ;
+  let rightVsLeft = rightSideImageJ === leftSideImageJ;
+  // this is so that I can do a check on me new variable
+  //  console.log(leftVsMiddle,rightVsMiddle,rightVsLeft);
+
+  while (leftVsMiddle || rightVsMiddle || rightVsLeft) {
+    if (leftVsMiddle) {
+      // leftSideImageJ = Math.floor(Math.random() * imgInfo.length);
+      leftSideImageJ = randomize(imgInfo);
+    } else if (rightVsMiddle) {
+      // rightSideImageJ = Math.floor(Math.random() * imgInfo.length);
+      rightSideImageJ = randomize(imgInfo);
+    } else if (rightVsLeft) {
+      // middleSideImageJ = Math.floor(Math.random() * imgInfo.length);
+      middleSideImageJ = randomize(imgInfo);
+    }
+    leftVsMiddle = leftSideImageJ === middleSideImageJ;
+    rightVsMiddle = rightSideImageJ === middleSideImageJ;
+    rightVsLeft = rightSideImageJ === leftSideImageJ;
+  }
 
   // right image and name will show in the webpage
   rightSideName.innerText = imgInfo[rightSideImageJ].name;
@@ -75,7 +101,6 @@ function getRandom() {
   middleSideImage = imgInfo[middleSideImageJ];
   rightSideImage = imgInfo[rightSideImageJ];
   leftSideImage = imgInfo[leftSideImageJ];
-  
 }
 
 // getRandom();
@@ -119,7 +144,7 @@ const clickBestO = function (JBD) {
 
   if (totalNumberOC === MAX_CLICKS_NEED) {
     allImage.removeEventListener("click", clickBestO);
-     updateLS();
+    updateLS();
     chartMarkerImg(); // this is where i'm going to make my chart
     console.log("you have made your selection");
     for (let j = 0; j < imgInfo.length; j++) {
@@ -153,13 +178,14 @@ function chartMarkerImg() {
 
   let myChart = document.getElementById("myChart").getContext("2d");
   let imgC = new Chart(myChart, {
-    type: "line",
+
 
     data: {
       labels: ImgName,
       datasets: [
         {
           label: "Image that are liked",
+          type: "bar",
           backgroundColor: "rgb(255, 99, 132)",
           borderColor: "rgb(255, 99, 132)",
           data: ImgLikes,
@@ -192,11 +218,11 @@ function updateLS() {
   const aString = JSON.stringify(imgInfo);
 
   // I think that I need this so that I can add the to imgInfo img in the products
-  localStorage.setItem("everyproducts", aString);
+  localStorage.setItem("everyProducts", aString);
 }
 
 function getUpdatedLS() {
-  const oldData = localStorage.getItem("everyproducts");
+  const oldData = localStorage.getItem("everyProducts");
 
   const allImage = JSON.parse(oldData);
   // I put this here so that I can this can happen first.
