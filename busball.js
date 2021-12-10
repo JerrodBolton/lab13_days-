@@ -24,6 +24,8 @@ MAX_CLICKS_NEED = 25;
 let imgInfo = [
   // I'm add a new image into the random image shower
   new randomNumber("bag", "img/bag.jpg"),
+
+  
   new randomNumber("banana", "img/banana.jpg"),
   new randomNumber("bathroom", "img/bathroom.jpg"),
   new randomNumber("boots", "img/boots.jpg"),
