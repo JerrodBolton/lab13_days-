@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="mall.css">
+    <title>Bus Mall </title>
+</head>
+<body>
+    <nav>
+        <ul> 
+            <li><a href="./index.html"> Reset </a></li>
+            <!-- <li><a href="../all_images.file/images.html"> All Images</a></li> -->
+        </ul>
+    </nav>
+    <header id ="busBallHeader">
+        <h1>Bus Mall</h1>
+    </header>   
+    <!-- I need a place where all my image will show up on the webpage  -->
+<section  class="all_pic" id="all_pic">
+ <h2> Choose the picture that you like the most!</h2>
+ <div class="just_the_photo">
+     <div class = "item1" id="rightImage">
+        <img id="rightSideImg" src ="" alt= "right side image" width="500">
+        <p id = "rightSideName"></p>
+     
+    </div>
+    <div id="middleImage">
+        <img id="middleSideImg" src ="" alt= "middle side image" width="500">
+        <p id="middleSideName"></p>
+    </div>
+    <div id="leftImage">
+        <img id="leftSideImg" src ="" alt= "left side image" width="500">
+        <p id="leftSideName"></p>
+    </div>
+ </div>
+</section>
+
+<!-- This is so my chart can render on my webpage -->
+<div  class= "theChart" id="imgChart">
+<div id="write"></div>
+    <canvas id="myChart"></canvas>
+</div>
+  
+<!-- When all this appear I  need to show the total to the every selected-->
+<aside>
+
+    <ol id="endThoughts"> 
+       <h3>Total/Ending Thoughts </h3>
+    </ol>
+</aside>
+
+
+    <script src="busball.js"> </script>
+    
+</body>
+</html>

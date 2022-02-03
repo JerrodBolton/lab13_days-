@@ -24,8 +24,6 @@ MAX_CLICKS_NEED = 25;
 let imgInfo = [
   // I'm add a new image into the random image shower
   new randomNumber("bag", "img/bag.jpg"),
-
-  
   new randomNumber("banana", "img/banana.jpg"),
   new randomNumber("bathroom", "img/bathroom.jpg"),
   new randomNumber("boots", "img/boots.jpg"),
@@ -148,10 +146,13 @@ const clickBestO = function (JBD) {
     allImage.removeEventListener("click", clickBestO);
     updateLS();
     chartMarkerImg(); // this is where i'm going to make my chart
-    console.log("you have made your selection");
+    console.log ("made your selection");
     for (let j = 0; j < imgInfo.length; j++) {
-      //  this is going to show the number of times I have clicked
+      //this is going to show the number of times I have clicked
       let scoreLi = document.createElement("li");
+      //let div = document.createElement("div");
+      scoreLi.classList.add("scoreLi");
+      //div.classList.add("shape");
       scoreLi.innerText = `${imgInfo[j].name}: ${imgInfo[j].numberShown}`;
       endThoughts.appendChild(scoreLi); // this is add the ending score to the webpage
     }
@@ -160,8 +161,8 @@ const clickBestO = function (JBD) {
 
 function chartMarkerImg() {
   // I have to make a element so that I can make my chart
-  let bigTitle = document.createElement("h2");
-  bigTitle.innerText = "You have Chosen!";
+  let bigTitle = document.getElementById("write");
+  bigTitle.innerText = "You have chosen!";
   // I got the "imgChart" from the id that I made in my HTML in the div elements tags.
   imgChart.appendChild(bigTitle);
 
@@ -186,9 +187,12 @@ function chartMarkerImg() {
       labels: ImgName,
       datasets: [
         {
+          color: "black", 
           label: "Image that are liked",
           type: "bar",
-          backgroundColor: "rgb(255, 99, 132)",
+          backgroundColor: [              
+           "rgb(13, 13, 100)"
+          ],
           borderColor: "rgb(255, 99, 132)",
           data: ImgLikes,
         },
